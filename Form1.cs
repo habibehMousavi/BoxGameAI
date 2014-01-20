@@ -192,10 +192,10 @@ namespace SocketClient_2
 
             if (m.Success)
             {
-                MessageBox.Show(m.Groups[1].ToString());
-                MessageBox.Show(m.Groups[2].ToString());
-                MessageBox.Show(m.Groups[3].ToString());
-                MessageBox.Show(m.Groups[4].ToString());
+                m.Groups[1].ToString();
+                m.Groups[2].ToString();
+                m.Groups[3].ToString();
+                m.Groups[4].ToString();
             }
 
 
