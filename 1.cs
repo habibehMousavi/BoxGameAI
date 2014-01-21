@@ -107,7 +107,7 @@ namespace ConsoleApplication1
             if(text.Substring(0,1)=="B")
             {
                
-            string regexBracket = @"\  Bonus\(\+([1-2]),[A-B]\)(\|\[([0-9]),([0-9]|1[0-4]),([0-9]),([0-9]|1[0-4])])";
+            string regexBracket = @"Bonus\(\+([1-2]),[A-B]\)(\|\[([0-9]),([0-9]|1[0-4]),([0-9]),([0-9]|1[0-4])])";
 
             Regex r = new Regex(regexBracket, RegexOptions.IgnoreCase);
 
