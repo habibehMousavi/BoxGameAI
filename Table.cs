@@ -7,6 +7,12 @@ namespace SocketClient_2
 {
     class Table
     {
+        
+        
+ 
+        public void setLine(
+
+
 
 
 

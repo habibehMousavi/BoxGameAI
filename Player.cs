@@ -29,6 +29,10 @@ namespace SocketClient_2
             return move;
 
         }
+       public void setMove(move) 
+        {
+           /int lastMove=move;
+        }
 
         
     }

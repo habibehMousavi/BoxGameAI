@@ -182,8 +182,23 @@ namespace SocketClient_2
 
         // player.table
 
-        private void manageServerMessage(string text)
+        public void manageServerMessage(string text)
         {
+
+            if (text.Substring(0, 1) == "S")
+            {
+               player.turn++;
+            }
+            else if (text.Substring(0, 1) == "R")
+            {
+                player.turn--;
+            }
+            else if (text.Substring(0, 1) == "T" || text.Substring(0, 1) == "I")
+            {
+                player.turn--;
+            }
+
+
             string regexBracket = @"\[([0-9]),([0-9]|1[0-4]),([0-9]),([0-9]|1[0-4])]";
 
             Regex r = new Regex(regexBracket, RegexOptions.IgnoreCase);
@@ -192,15 +207,47 @@ namespace SocketClient_2
 
             if (m.Success)
             {
-                m.Groups[1].ToString();
-                m.Groups[2].ToString();
-                m.Groups[3].ToString();
-                m.Groups[4].ToString();
+                //move[0] = Convert.ToInt16(m.Groups[1].ToString());
+                //move[1] = Convert.ToInt16(m.Groups[2].ToString());
+                //move[2] = Convert.ToInt16(m.Groups[3].ToString());
+                //move[3] = Convert.ToInt16(m.Groups[4].ToString());
+
+                player.setMove.move[0] = Convert.ToInt16(m.Groups[1].ToString());
+                player.setMove.move[1] = Convert.ToInt16(m.Groups[2].ToString());
+                player.setMove.move[2] = Convert.ToInt16(m.Groups[3].ToString());
+                player.setMove.move[3] = Convert.ToInt16(m.Groups[4].ToString());
+            }
+
+            string bonusRegex = @"Bonus\(\+([1-2]),[A-B]\)";
+
+            Regex r1 = new Regex(bonusRegex, RegexOptions.IgnoreCase);
+
+            Match m1 = r1.Match(text);
+
+            if (m1.Success)
+            {
+                int count;
+
+                count = Convert.ToInt16(m1.Groups[1].ToString());
+
+                if (m1.Groups[3] == null)
+                    player.turn = count;
+                else
+                    player.turn = -count + 1;
+
             }
 
 
-            
-            
+            //Console.WriteLine("turn:");
+            //Console.WriteLine(turn.ToString());
+            //Console.WriteLine("");
+
+            //Console.WriteLine("move:");
+            //Console.WriteLine(string.Join(",", move));
+            //Console.WriteLine("");
+
+
+
             
             MessageBox.Show(player.turn.ToString());
             //if (player.turn > 0)
